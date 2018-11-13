@@ -1,8 +1,12 @@
 package com.gowda.SHP.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,36 +21,18 @@ public class User {
 	@GeneratedValue
 	@Column(name = "user_id")
 	private int id;
+	@Column(name="user_name")
 	private String username;
+	
+	@ElementCollection
+	private Set<Address> listOfAddress = new HashSet<Address>();
 
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "doorNo", column = @Column(name = "office_door_no")),
-			@AttributeOverride(name = "street", column = @Column(name = "office_steet")),
-			@AttributeOverride(name = "city", column = @Column(name = "office_city")),
-			@AttributeOverride(name = "state", column = @Column(name = "office_state")) })
-	private Address officeAddress;
-
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "doorNo", column = @Column(name = "home_door_no")),
-			@AttributeOverride(name = "street", column = @Column(name = "home_steet")),
-			@AttributeOverride(name = "city", column = @Column(name = "home_city")),
-			@AttributeOverride(name = "state", column = @Column(name = "home_state")) })
-	private Address homeAddress;
-
-	public Address getOfficeAddress() {
-		return officeAddress;
+	public Set<Address> getListOfAddress() {
+		return listOfAddress;
 	}
 
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
-	}
-
-	public Address getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
+	public void setListOfAddress(Set<Address> listOfAddress) {
+		this.listOfAddress = listOfAddress;
 	}
 
 	public String getUsername() {

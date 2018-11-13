@@ -1,12 +1,18 @@
 package com.gowda.SHP.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+
+	@Column(name = "door_no")
 	private String doorNo;
+	@Column(name = "steet")
 	private String street;
+	@Column(name = "city")
 	private String city;
+	@Column(name = "state")
 	private String state;
 
 	public String getDoorNo() {
